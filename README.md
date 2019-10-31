@@ -1,2 +1,1 @@
-# aoc2019
-adventofcode2019
+this will be bad
