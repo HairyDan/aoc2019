@@ -10,5 +10,5 @@ PLAN:
 
 language order:
 <ol>
-<li>1: haskell</li>
+<li>haskell</li>
 </ol>
