@@ -7,8 +7,10 @@ let input = [1;12;2;3;1;1;2;3;1;3;4;3;1;5;0;3;2;1;10;19;1;19;5;23;2;23;6;27;1;27
 
 (* Printf.printf "get 6th %d" num;; *)
 
+(* PART 1 *)
 
-let rec print_list = function 
+
+(* let rec print_list = function 
 [] -> ()
 | e::l -> print_int e ; print_string "," ; print_list l
 
@@ -40,5 +42,49 @@ let rec looper inputList i =
 let main () = 
     looper input 0
     ;;
+
+main() *)
+
+
+(* PART 2 *)
+
+
+let replace l pos a  = List.mapi (fun i x -> if i = pos then a else x) l
+
+let rec looper inputList i =
+    let op = List.nth inputList i in
+    if op == 99
+    then begin
+      List.nth inputList 0
+    end
+    else begin
+    let var1 = List.nth inputList (i+1) in
+    let var2 = List.nth inputList (i+2) in
+    let outPos = List.nth inputList (i+3) in
+    if op == 1
+      then begin
+        let outVal = (List.nth inputList var1) + (List.nth inputList var2) in
+        let newlist = replace inputList outPos outVal in
+        looper newlist (i+4)
+      end else begin
+        let outVal = (List.nth inputList var1) * (List.nth inputList var2) in
+        let newlist = replace inputList outPos outVal in
+        looper newlist (i+4)
+      end
+    end
+
+let main () = 
+  for i = 1 to 100 do
+    for j = 1 to 100 do
+      let newlist1 = replace input 1 i in
+      let newlist2 = replace newlist1 2 j in
+      let thenumber = looper newlist2 0 in
+      if thenumber == 19690720
+      then begin
+        Printf.printf "FIRST %d" i;
+        Printf.printf "SECOND %d" j
+      end
+    done
+  done;;
 
 main()
