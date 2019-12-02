@@ -8,7 +8,8 @@ PLAN:
 * set up (at least some) languages in advance with fizzbuzz
 * do harder languages first (while the questions are easier)
 
-language order:
+language order and how to compile/run:
 <ol>
-<li>haskell</li>
+<li>haskell; ghc 1.hs, ./1</li>
+<li>ocaml; ocamlopt -o progprog 2.ml, ./progprog</li>
 </ol>
